@@ -9,7 +9,7 @@ pipeline {
     }
 
     stages {
-        stage('Building jar') { 
+        stage('Building warfile') { 
             steps {
                 sh 'mvn -B -DskipTests clean package' 
             }
