@@ -28,8 +28,11 @@ pipeline {
         stage('Build Image') {
             steps {
 
-                def image = docker.build("dvsp-javapp:${env.BUILD_ID}")
+                script{
 
+                    def image = docker.build("dvsp-javapp:${env.BUILD_ID}")
+
+                }                
             }
         }
 
