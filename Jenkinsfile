@@ -1,3 +1,7 @@
+def registry 
+def imageName
+def version
+
 pipeline {
     agent {
         node {
@@ -20,5 +24,14 @@ pipeline {
                 sh 'mvn test' 
             }
         }
+
+        stage('Build Image') {
+            steps {
+
+                def image = docker.build("dvsp-javapp:${env.BUILD_ID}")
+
+            }
+        }
+
     }  
 }
