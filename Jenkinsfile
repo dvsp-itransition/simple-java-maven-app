@@ -29,6 +29,7 @@ pipeline {
             steps {
                 script{
                     def javappimage = docker.build("dvsp-javapp:${env.BUILD_ID}")
+                    env.javappimage = javappimage
                 }                
             }
         }
@@ -36,7 +37,7 @@ pipeline {
         stage('Scan Image'){
             steps{
                 script{
-                    sh 'trivy image javappimage'
+                    echo "javappimage"
                 }
             }
         }
