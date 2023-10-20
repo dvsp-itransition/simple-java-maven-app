@@ -1,5 +1,5 @@
 def registry = '753743851231.dkr.ecr.us-east-2.amazonaws.com/dvsp-repo'
-def imageName = dvsp-repo
+def imageName 
 def version
 
 pipeline {
