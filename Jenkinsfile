@@ -8,8 +8,6 @@ pipeline {
         maven 'maven3'
     }
 
-    environment name: 'BUILDTYPE', value: 'CI'
-
     stages {
         stage('Building jar') { 
             steps {
