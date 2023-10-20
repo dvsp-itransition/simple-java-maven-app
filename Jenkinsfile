@@ -36,7 +36,7 @@ pipeline {
         stage('Scan Image'){
             steps{
                 script{
-                    sh 'trivy image dvsp-javapp:${env.BUILD_ID}'
+                    sh 'trivy image javappimage'
                 }
             }
         }
