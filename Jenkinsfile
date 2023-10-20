@@ -4,6 +4,11 @@ pipeline {
             label 'build'
         }
     }
+
+    tools{
+        maven 'maven3'
+    }
+
     stages {
         stage('Building jar') { 
             steps {
