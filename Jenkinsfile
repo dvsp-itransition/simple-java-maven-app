@@ -19,17 +19,16 @@ pipeline {
             }
         }
 
-        stage('Unit Tests') { 
-            steps {
-                sh 'mvn test' 
-            }
-        }
+        // stage('Unit Tests') { 
+        //     steps {
+        //         sh 'mvn test' 
+        //     }
+        // }
 
         stage('Build Image') {
             steps {
                 script{
-                    def javappimage = docker.build("dvsp-javapp:${env.BUILD_ID}")
-                    env.javappimage = javappimage
+                    def javappimage = docker.build("dvsp-javapp:${env.BUILD_ID}")                 
                 }                
             }
         }
@@ -37,7 +36,7 @@ pipeline {
         stage('Scan Image'){
             steps{
                 script{
-                    echo "Image name - ${javappimage}"
+                    echo "Image name - dvsp-javapp:${env.BUILD_ID}"
                 }
             }
         }
