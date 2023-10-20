@@ -1,5 +1,5 @@
-def registry 
-def imageName
+def registry = '753743851231.dkr.ecr.us-east-2.amazonaws.com/dvsp-repo'
+def imageName = dvsp-repo
 def version
 
 pipeline {
@@ -28,19 +28,27 @@ pipeline {
         stage('Build Image') {
             steps {
                 script{
-                    def javappimage = docker.build("dvsp-javapp:${env.BUILD_ID}")                 
+                    javapp = docker.build(registry + "${env.BUILD_ID}")                 
                 }                
             }
         }
 
-        stage('Scan Image'){
-            steps{
+        // stage('Scan Image'){
+        //     steps{                
+        //         sh "trivy image dvsp-javapp:${env.BUILD_ID}"
+        //     }
+        // }
 
-                echo "Image name - dvsp-javapp:${env.BUILD_ID}"
-
-                sh "trivy image dvsp-javapp:${env.BUILD_ID}"
-            }
-        }
-
+        // stage('Push Image') {
+        //     steps {
+        //         script{
+        //             docker.withRegistry(registry, 'credentials-id') {
+                        
+        //                 javapp.push()                          
+        //             }
+                                    
+        //         }                
+        //     }
+        // }
     }  
 }
