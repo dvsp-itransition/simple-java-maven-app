@@ -1,15 +1,23 @@
-# simple-java-maven-app
+boxfuse-sample-java-war-hello
+=============================
 
-This repository is for the
-[Build a Java app with Maven](https://jenkins.io/doc/tutorials/build-a-java-app-with-maven/)
-tutorial in the [Jenkins User Documentation](https://jenkins.io/doc/).
+Boxfuse Sample Hello World Java application packaged as a war file
 
-The repository contains a simple Java application which outputs the string
-"Hello world!" and is accompanied by a couple of unit tests to check that the
-main application works as expected. The results of these tests are saved to a
-JUnit XML report.
+## Prerequisites
 
-The `jenkins` directory contains an example of the `Jenkinsfile` (i.e. Pipeline)
-you'll be creating yourself during the tutorial and the `jenkins/scripts` subdirectory
-contains a shell script with commands that are executed when Jenkins processes
-the "Deliver" stage of your Pipeline.
+- Git
+- Java
+- Maven
+- VirtualBox
+- Boxfuse
+
+## Running
+
+1. git clone https://github.com/boxfuse/boxfuse-sample-java-war-hello
+2. cd boxfuse-sample-java-war-hello
+3. mvn package
+4. boxfuse run target/hello-1.0.war
+
+Done!
+
+Open your browser at http://localhost:8888 or simple type ```boxfuse open hello:1.0``` to see your brand new instance in action!
