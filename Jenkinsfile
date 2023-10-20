@@ -4,10 +4,11 @@ pipeline {
             label 'build'
         }
     }
-
-    tools{
+    tools {
         maven 'maven3'
     }
+
+    environment name: 'BUILDTYPE', value: 'CI'
 
     stages {
         stage('Building jar') { 
