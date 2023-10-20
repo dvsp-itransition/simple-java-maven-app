@@ -37,7 +37,7 @@ pipeline {
         stage('Scan Image'){
             steps{
                 script{
-                    echo "javappimage"
+                    echo "Image name - ${javappimage}"
                 }
             }
         }
