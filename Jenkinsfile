@@ -37,6 +37,8 @@ pipeline {
             steps{
                 script{
                     echo "Image name - dvsp-javapp:${env.BUILD_ID}"
+                    
+                    "trivy image dvsp-javapp:${env.BUILD_ID}"                
                 }
             }
         }
