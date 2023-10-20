@@ -35,12 +35,10 @@ pipeline {
 
         stage('Scan Image'){
             steps{
-                script{
-                    echo "Image name - dvsp-javapp:${env.BUILD_ID}"
 
-                    sh 'trivy image dvsp-javapp:${env.BUILD_ID}'
-                                       
-                }
+                echo "Image name - dvsp-javapp:${env.BUILD_ID}"
+
+                sh 'trivy image dvsp-javapp:${env.BUILD_ID}'
             }
         }
 
