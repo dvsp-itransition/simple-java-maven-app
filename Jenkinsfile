@@ -5,9 +5,9 @@ pipeline {
         }
     }
     stages {
-        stage('Build jar') { 
+        stage('Building jar') { 
             steps {
-                echo "hello..."
+                sh 'mvn -B -DskipTests clean package' 
             }
         }
     }
