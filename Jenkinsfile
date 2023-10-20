@@ -38,7 +38,7 @@ pipeline {
 
                 echo "Image name - dvsp-javapp:${env.BUILD_ID}"
 
-                sh 'trivy image dvsp-javapp:${env.BUILD_ID}'
+                sh "trivy image dvsp-javapp:${env.BUILD_ID}"
             }
         }
 
