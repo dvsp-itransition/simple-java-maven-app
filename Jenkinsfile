@@ -34,12 +34,13 @@ pipeline {
                     javapp = docker.build(image)                 
                 }                
             }
+            post {
+                always {
+                    sh "docker rmi ${reponame}:${env.BUILD_ID}"
+                }           
+            }
         }
-        post {
-            always {
-                 sh "docker rmi ${reponame}:${env.BUILD_ID}"
-            }           
-        }
+       
 
         // stage('Scan Image'){
         //     steps{                
