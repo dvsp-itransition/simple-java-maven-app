@@ -61,7 +61,7 @@ pipeline {
                 script{
                     docker.withRegistry(registry, 'ecr:us-east-2:awscred') {
                                                 
-                        docker run -P -d dvsp-javappimage:39                      
+                        docker run -P -d 753743851231.dkr.ecr.us-east-2.amazonaws.com/dvsp-javappimage:39                      
                     }                                    
                 }                
             }
