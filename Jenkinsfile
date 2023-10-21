@@ -61,7 +61,7 @@ pipeline {
                     docker.withRegistry(registry, 'ecr:us-east-2:awscred') {
                                                 
                         javapp.pull()                        
-                        docker run -P -d registry + "/" + reponame + ":" + env.BUILD_ID                                            
+                        sh 'docker run -P -d registry + "/" + reponame + ":" + env.BUILD_ID'                                           
                     }                                    
                 }                
             }
