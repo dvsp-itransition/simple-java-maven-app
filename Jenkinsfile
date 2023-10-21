@@ -15,11 +15,11 @@ pipeline {
     parameters { string(name: 'DEPLOY_TO', defaultValue: 'staging', description: '') }
 
     stages {
-        // stage('Building warfile') { 
-        //     steps {
-        //         sh 'mvn -B -DskipTests clean package' 
-        //     }
-        // }
+        stage('Building warfile') { 
+            steps {
+                sh 'mvn -B -DskipTests clean package' 
+            }
+        }
 
         // stage('Unit Tests') { 
         //     steps {
@@ -27,14 +27,14 @@ pipeline {
         //     }
         // }
 
-        // stage('Build Image') {
-        //     steps {
-        //         script{
-        //             image = reponame + ":" + env.BUILD_ID // prepares tag name for the image
-        //             javapp = docker.build(image)                 
-        //         }                
-        //     }
-        // }
+        stage('Build Image') {
+            steps {
+                script{
+                    image = reponame + ":" + env.BUILD_ID // prepares tag name for the image
+                    javapp = docker.build(image)                 
+                }                
+            }
+        }
         // post {
         //     sh "docker rmi ${reponame}:${env.BUILD_ID}"
         // }
@@ -45,23 +45,23 @@ pipeline {
         //     }
         // }
 
-        // stage('Push Image') {
-        //     steps {
-        //         script{
-        //             docker.withRegistry(registry, 'ecr:us-east-2:awscred') {
+        stage('Push Image') {
+            steps {
+                script{
+                    docker.withRegistry(registry, 'ecr:us-east-2:awscred') {
                         
-        //                 javapp.push()                          
-        //             }                                    
-        //         }                
-        //     }
-        // }
+                        javapp.push()                          
+                    }                                    
+                }                
+            }
+        }
 
         stage('Deploy Image') {
             steps {
                 script{
                     docker.withRegistry(registry, 'ecr:us-east-2:awscred') {
                                                 
-                        docker run -P -d 753743851231.dkr.ecr.us-east-2.amazonaws.com/dvsp-javappimage:39                      
+                        javapp.run()                    
                     }                                    
                 }                
             }
