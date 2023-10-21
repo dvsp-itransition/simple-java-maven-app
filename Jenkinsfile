@@ -62,7 +62,7 @@ pipeline {
             steps {
                 script{
 
-                    if (env.name == 'staging') {
+                    if (env.name == 'DEPLOY_TO') {
 
                             docker.withRegistry('https://' + registry, 'ecr:us-east-2:awscred') { 
 
