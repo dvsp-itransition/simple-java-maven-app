@@ -55,18 +55,17 @@ pipeline {
             }
         }
 
-        // stage('Deploy Image') {
-        //     steps {
-        //         script{
-        //             docker.withRegistry(registry, 'ecr:us-east-2:awscred') {
+        stage('Deploy Image') {
+            steps {
+                script{
+                    docker.withRegistry(registry, 'ecr:us-east-2:awscred') {
                                                 
-        //                 javapp.pull()
-        //                 docker run -P -d 753743851231.dkr.ecr.us-east-2.amazonaws.com/dvsp-javappimage:42
-        //                 docker run -P -d "${registry}/${reponame}:${env.BUILD_ID}"                     
-        //             }                                    
-        //         }                
-        //     }
-        // }
+                        javapp.pull()                        
+                        docker run -P -d registry + "/" + reponame + ":" + env.BUILD_ID                                            
+                    }                                    
+                }                
+            }
+        }
     }  
 }
 
