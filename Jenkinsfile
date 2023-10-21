@@ -71,7 +71,11 @@ pipeline {
                             sh "docker run --name javapp-staging -p 7000:8080 -d ${registry}/${reponame}:${env.BUILD_ID}"                                          
                         
                         }                              
-                    }                                                      
+                    }  
+                    else {
+                        echo "Something went wrong"
+                    }
+
                 }                
             }
         }
