@@ -1,5 +1,5 @@
-def registry = '753743851231.dkr.ecr.us-east-2.amazonaws.com/dvsp-repo'
-def imageName 
+def registry = 'https://753743851231.dkr.ecr.us-east-2.amazonaws.com'
+def reponame = 'dvsp-javappimage'
 def version
 
 pipeline {
@@ -28,7 +28,8 @@ pipeline {
         stage('Build Image') {
             steps {
                 script{
-                    javapp = docker.build(registry + "${env.BUILD_ID}")                 
+                    imageTag = reponame +":" + env.BUILD_ID // prepares tag name for the image
+                    javapp = docker.build(imageTag)                 
                 }                
             }
         }
@@ -39,16 +40,16 @@ pipeline {
         //     }
         // }
 
-        // stage('Push Image') {
-        //     steps {
-        //         script{
-        //             docker.withRegistry(registry, 'credentials-id') {
+        stage('Push Image') {
+            steps {
+                script{
+                    docker.withRegistry('https://753743851231.dkr.ecr.us-east-2.amazonaws.com', 'credentials-id') {
                         
-        //                 javapp.push()                          
-        //             }
+                        javapp.push()                          
+                    }
                                     
-        //         }                
-        //     }
-        // }
+                }                
+            }
+        }
     }  
 }
