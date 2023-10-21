@@ -69,6 +69,11 @@ pipeline {
                     }                                    
                 }                
             }
+            post {
+                always {
+                    sh "docker rmi ${registry}/${reponame}:${env.BUILD_ID}"
+                }           
+            }
         }
     }  
 }
