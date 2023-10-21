@@ -61,10 +61,8 @@ pipeline {
         stage('Deploy Image') {            
             steps {
                 script{
-                    
-                    // params.DEPLOY_TO  == 'staging' && 
 
-                    if (env.BRANCH_NAME == 'staging') {
+                    if (params.DEPLOY_TO  == 'staging') {
 
                             docker.withRegistry('https://' + registry, 'ecr:us-east-2:awscred') { 
                             javapp.pull()  
