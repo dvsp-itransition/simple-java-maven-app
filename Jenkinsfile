@@ -58,7 +58,7 @@ pipeline {
         stage('Deploy Image') {
             steps {
                 script{
-                    docker.withRegistry(registry, 'ecr:us-east-2:awscred') {
+                    docker.withRegistry('https://' + registry, 'ecr:us-east-2:awscred') {
                                                 
                         javapp.pull()                        
                         // sh "docker run -P -d ${registry}/${reponame}:${env.BUILD_ID}"                                           
