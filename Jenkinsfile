@@ -40,16 +40,16 @@ pipeline {
         //     }
         // }
 
-        stage('Push Image') {
-            steps {
-                script{
-                    docker.withRegistry('https://753743851231.dkr.ecr.us-east-2.amazonaws.com', 'credentials-id') {
+        // stage('Push Image') {
+        //     steps {
+        //         script{
+        //             docker.withRegistry('https://753743851231.dkr.ecr.us-east-2.amazonaws.com', 'credentials-id') {
                         
-                        javapp.push()                          
-                    }
+        //                 javapp.push()                          
+        //             }
                                     
-                }                
-            }
-        }
+        //         }                
+        //     }
+        // }
     }  
 }
