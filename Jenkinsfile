@@ -34,11 +34,6 @@ pipeline {
                     javapp = docker.build(image)                 
                 }                
             }
-            post {
-                always {
-                    sh "docker rmi ${reponame}:${env.BUILD_ID}"
-                }           
-            }
         }
        
 
@@ -55,6 +50,11 @@ pipeline {
                         javapp.push()                          
                     }                                    
                 }                
+            }
+            post {
+                always {
+                    sh "docker rmi ${reponame}:${env.BUILD_ID}"
+                }           
             }
         }
 
