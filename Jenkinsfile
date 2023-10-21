@@ -65,17 +65,22 @@ pipeline {
                     if (params.DEPLOY_TO  == 'staging') {
 
                             docker.withRegistry('https://' + registry, 'ecr:us-east-2:awscred') { 
-
                             javapp.pull()  
                             sh 'docker rm -f javapp-staging || true'                      
                             sh "docker run --name javapp-staging -p 7000:8080 -d ${registry}/${reponame}:${env.BUILD_ID}"                                          
                         
                         }                              
-                    }  
-                    else {
-                        echo "Something went wrong"
-                    }
+                    } 
 
+                    if (params.DEPLOY_TO  == 'production') {
+
+                            docker.withRegistry('https://' + registry, 'ecr:us-east-2:awscred') { 
+                            javapp.pull()  
+                            sh 'docker rm -f javapp-production || true'                      
+                            sh "docker run --name javapp-production -p 8000:8080 -d ${registry}/${reponame}:${env.BUILD_ID}"                                          
+                        
+                        }                              
+                    }                       
                 }                
             }
         }
