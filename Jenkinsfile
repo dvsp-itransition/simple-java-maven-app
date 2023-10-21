@@ -62,7 +62,7 @@ pipeline {
             steps {
                 script{
 
-                    if (param.name == 'staging') {
+                    if (params.name == 'staging') {
                             docker.withRegistry('https://' + registry, 'ecr:us-east-2:awscred') { 
 
                             javapp.pull()  
