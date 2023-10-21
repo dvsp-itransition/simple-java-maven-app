@@ -35,9 +35,11 @@ pipeline {
                 }                
             }
         }
-        // post {
-        //     sh "docker rmi ${reponame}:${env.BUILD_ID}"
-        // }
+        post {
+            always {
+                 sh "docker rmi ${reponame}:${env.BUILD_ID}"
+            }           
+        }
 
         // stage('Scan Image'){
         //     steps{                
@@ -60,8 +62,9 @@ pipeline {
                 script{
                     docker.withRegistry('https://' + registry, 'ecr:us-east-2:awscred') {
                                                 
-                        javapp.pull()                        
-                        sh "docker run -P -d ${registry}/${reponame}:${env.BUILD_ID}"                                          
+                        javapp.pull()  
+                        sh 'docker stop javapp-staging || true && docker rm javapp-staging || true'                      
+                        sh "docker run --name javapp-staging -P -d ${registry}/${reponame}:${env.BUILD_ID}"                                          
                     }                                    
                 }                
             }
