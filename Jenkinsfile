@@ -58,15 +58,19 @@ pipeline {
             }
         }
 
-        stage('Deploy Image') {
+        stage('Deploy Image') {            
             steps {
                 script{
-                    docker.withRegistry('https://' + registry, 'ecr:us-east-2:awscred') {
-                                                
-                        javapp.pull()  
-                        sh 'docker stop javapp-staging || true && docker rm javapp-staging || true'                      
-                        sh "docker run --name javapp-staging -p 7000:8080 -d ${registry}/${reponame}:${env.BUILD_ID}"                                          
-                    }                                    
+
+                    if (param.name == 'staging') {
+                            docker.withRegistry('https://' + registry, 'ecr:us-east-2:awscred') { 
+
+                            javapp.pull()  
+                            sh 'docker stop javapp-staging || true && docker rm javapp-staging || true'                      
+                            sh "docker run --name javapp-staging -p 7000:8080 -d ${registry}/${reponame}:${env.BUILD_ID}"                                          
+                        
+                        }                              
+                    }                                                      
                 }                
             }
         }
