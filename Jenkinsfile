@@ -4,7 +4,7 @@ def reponame = 'dvsp-javappimage'
 pipeline {
     agent {
         node {
-            label 'build'
+            label 'node'
         }
     }
     tools {
@@ -35,7 +35,6 @@ pipeline {
             }
         }
        
-
         stage('Scan Image'){
             steps{                
                 sh "trivy image ${reponame}:${env.BUILD_ID}"
