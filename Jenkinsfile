@@ -11,7 +11,7 @@ pipeline {
         maven 'maven3'
     }
 
-    parameters { string(name: 'DEPLOY_TO', defaultValue: 'staging', description: '') }
+    parameters { string(name: 'DEPLOY_TO', defaultValue: 'production', description: '') }
 
     stages {
         stage('Building warfile') { 
